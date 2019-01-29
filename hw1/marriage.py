@@ -8,7 +8,7 @@ marriage = pd.read_excel('data/state-marriage-rates-90-95-99-17.xlsx',  # read i
                          header=[0,1],                                  # set header
                          skipfooter=8,                                  # skip rows of footer metadata
                          na_values='---',                               # null values in excel file
-                         usecols=22,                                    # set number of columns
+                         usecols=10,                                    # set number of columns
                          index_col = [0])                               # set index column
 
 marriage = marriage.stack([0,1]).reset_index()                          # reshape data by stacking to long, then reset index to new index
@@ -33,7 +33,8 @@ marriage.to_sql(con=conn,                                               # Write 
 cur = conn.cursor()                                                     # create cursor object to query db
 cur.execute("SELECT * FROM MarriageRate;")                              # execute query selecting all of the data in db MarrigeRate
 results = cur.fetchall()                                                # set var results = to all of the data fetched
-print(results)                                                          # print results / all data fetched
+print(results)                                                          # print results / all data fetched / printing to see if db
+                                                                        # and table are working
 
 
 
